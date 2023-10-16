@@ -8,7 +8,9 @@ const config: Config = {
         sans: ['var(--font-inter)'],
       },
       colors: {
-        brand: {},
+        brand: {
+          primary: 'rgb(97 83 204)',
+        },
         slate: {
           light: {
             1: '#fcfcfd',
