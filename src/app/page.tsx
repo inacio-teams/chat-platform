@@ -10,7 +10,7 @@ import {
 export default async function Home() {
   return (
     <main className="flex h-screen w-full">
-      <div className="flex h-full w-[90px] flex-col px-2 shadow-[0_2px_4px_rgba(52,58,64,.12)]">
+      <div className="flex h-full w-[90px] flex-col px-2 shadow-[0_2px_4px_rgba(52,58,64,.12)] dark:bg-[#1a1d21]">
         <a className="flex h-[70px] items-center justify-center leading-none">
           <span className="text-brand-primary">
             <svg
@@ -30,37 +30,37 @@ export default async function Home() {
           <nav>
             <ul className="flex flex-col items-center gap-3.5">
               <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92]">
+                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
                   <UserIcon width={20} height={20} />
                 </a>
               </li>
               <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92]">
+                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
                   <MessageSquareIcon width={20} height={20} />
                 </a>
               </li>
               <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92]">
+                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
                   <Contact2Icon width={20} height={20} />
                 </a>
               </li>
               <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92]">
+                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
                   <BookmarkIcon width={20} height={20} />
                 </a>
               </li>
               <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92]">
+                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
                   <SettingsIcon width={20} height={20} />
                 </a>
               </li>
             </ul>
           </nav>
           <div className="flex flex-col items-center gap-3.5">
-            <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92]">
+            <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
               <MoonIcon width={20} height={20} />
             </a>
-            <div className="h-[42px] w-[42px] overflow-hidden rounded-full bg-[#f6f6f9]">
+            <div className="flex h-[42px] w-[42px] items-center justify-center overflow-hidden rounded-full bg-[#f6f6f9] dark:bg-[#2a2f34]">
               <img
                 src="https://github.com/joaom00.png"
                 alt=""
