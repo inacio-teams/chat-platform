@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --bs-card-bg: ##ffffff;
+    --bs-border-color: #e6ebf5;
+  }
+
+  .dark {
+    --bs-card-bg: #212529;
+    --bs-border-color: #383e45;
+  }
+}
+
+body {
+  @apply bg-[#fafafa] dark:bg-[#212529] text-[#495057] dark:text-[#eff2f7];
+}

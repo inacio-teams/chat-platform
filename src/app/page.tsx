@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import {
   BookmarkIcon,
   Contact2Icon,
@@ -7,7 +10,44 @@ import {
   UserIcon,
 } from 'lucide-react'
 
-export default async function Home() {
+import { ContactsSubmenu } from '../components/ContactsSubmenu'
+import { MessagesSubmenu } from '../components/MessagesSubmenu'
+import { ProfileSubmenu } from '../components/ProfileSubmenu'
+
+const submenus = {
+  profile: <ProfileSubmenu />,
+  messages: <MessagesSubmenu />,
+  contacts: <ContactsSubmenu />,
+  bookmarks: null,
+  settings: null,
+} satisfies Record<string, React.ReactNode>
+
+const submenusNavigation: Array<{ id: keyof typeof submenus; icon: React.ReactNode }> = [
+  {
+    id: 'profile',
+    icon: <UserIcon width={20} height={20} />,
+  },
+  {
+    id: 'messages',
+    icon: <MessageSquareIcon width={20} height={20} />,
+  },
+  {
+    id: 'contacts',
+    icon: <Contact2Icon width={20} height={20} />,
+  },
+  {
+    id: 'bookmarks',
+    icon: <BookmarkIcon width={20} height={20} />,
+  },
+  {
+    id: 'settings',
+    icon: <SettingsIcon width={20} height={20} />,
+  },
+]
+
+export default function Home() {
+  const [submenu, setSubmenu] = useState<keyof typeof submenus>('profile')
+
   return (
     <main className="flex h-screen w-full">
       <div className="flex h-full w-[90px] flex-col px-2 shadow-[0_2px_4px_rgba(52,58,64,.12)] dark:bg-[#1a1d21]">
@@ -29,31 +69,13 @@ export default async function Home() {
         <div className="flex flex-1 flex-col justify-between pb-[7px]">
           <nav>
             <ul className="flex flex-col items-center gap-3.5">
-              <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
-                  <UserIcon width={20} height={20} />
-                </a>
-              </li>
-              <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
-                  <MessageSquareIcon width={20} height={20} />
-                </a>
-              </li>
-              <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
-                  <Contact2Icon width={20} height={20} />
-                </a>
-              </li>
-              <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
-                  <BookmarkIcon width={20} height={20} />
-                </a>
-              </li>
-              <li>
-                <a className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
-                  <SettingsIcon width={20} height={20} />
-                </a>
-              </li>
+              {submenusNavigation.map((item) => (
+                <li key={item.id} onClick={() => setSubmenu(item.id)}>
+                  <button className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#f6f6f9] text-[20px] leading-[42px] text-[#878a92] dark:bg-[#2a2f34]">
+                    {item.icon}
+                  </button>
+                </li>
+              ))}
             </ul>
           </nav>
           <div className="flex flex-col items-center gap-3.5">
@@ -70,7 +92,9 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="h-full w-[320px] border-r border-[#e6ebf5]">My Profile</div>
+
+      <div className="h-screen w-[320px] border-r border-border">{submenus[submenu]}</div>
+
       <div className="h-full flex-1">Chat</div>
     </main>
   )

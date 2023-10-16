@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -11,6 +12,8 @@ const config: Config = {
         brand: {
           primary: 'rgb(97 83 204)',
         },
+        card: 'var(--bs-card-bg)',
+        border: 'var(--bs-border-color)',
         slate: {
           light: {
             1: '#fcfcfd',
@@ -44,7 +47,19 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.grid-stack': {
+          display: 'grid',
+          'grid-template-areas': "'stack'",
+        },
+        '.grid-stack > *': {
+          'grid-area': 'stack',
+        },
+      })
+    }),
+  ],
 }
 
 export default config
