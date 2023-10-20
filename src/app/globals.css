@@ -4,13 +4,17 @@
 
 @layer base {
   :root {
-    --bs-card-bg: ##ffffff;
+    --bs-card-bg: #ffffff;
     --bs-border-color: #e6ebf5;
+    --bs-input-bg: #f6f6f9;
+    --bs-input-border: #dbe2f1;
   }
 
   .dark {
     --bs-card-bg: #212529;
     --bs-border-color: #383e45;
+    --bs-input-bg: #2a2f34;
+    --bs-input-border: #383e45;
   }
 }
 

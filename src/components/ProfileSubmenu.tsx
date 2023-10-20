@@ -1,5 +1,15 @@
 import Image from 'next/image'
-import { MapPinIcon, MessageSquareIcon, MoreVerticalIcon, PhoneIcon, UserIcon } from 'lucide-react'
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
+import { MoreVerticalIcon } from 'lucide-react'
+import {
+  BiBookmarks,
+  BiDotsHorizontal,
+  BiShareAlt,
+  BiSolidDownload,
+  BiTrash,
+  BiUser,
+} from 'react-icons/bi'
+import { RiMapPin2Line, RiMessage2Line, RiPhoneLine } from 'react-icons/ri'
 
 import profileBanner from '../assets/4902908.jpg'
 
@@ -28,7 +38,7 @@ export const ProfileSubmenu = () => {
         <img
           src="https://github.com/joaom00.png"
           alt=""
-          className="mx-auto h-20 w-20 rounded-full bg-white p-1 dark:bg-[#212529]"
+          className="mx-auto h-20 w-20 rounded-full bg-card p-1"
         />
         <div className="mt-4 text-center">
           <p className="text-[17px] font-medium text-[#495057] dark:text-[#eff2f7]">João Pedro</p>
@@ -44,19 +54,19 @@ export const ProfileSubmenu = () => {
         <ul className="mt-6 flex flex-col gap-6 border-b border-dashed border-border pb-5">
           <li className="flex items-center gap-4">
             <span className="text-[#9397ab]">
-              <UserIcon width={19} height={19} />
+              <BiUser width={19} height={19} />
             </span>
             <p className="text-sm text-[#495057] dark:text-[#eff2f7]">João Pedro</p>
           </li>
           <li className="flex items-center gap-4">
             <span className="text-[#9397ab]">
-              <PhoneIcon width={19} height={19} />
+              <RiPhoneLine width={19} height={19} />
             </span>
             <p className="text-sm text-[#495057] dark:text-[#eff2f7]">+(365) 1456 12584</p>
           </li>
           <li className="flex items-center gap-4">
             <span className="text-[#9397ab]">
-              <MessageSquareIcon width={19} height={19} />
+              <RiMessage2Line width={19} height={19} />
             </span>
             <p className="text-sm font-medium text-[#495057] dark:text-[#eff2f7]">
               dushanedaniel@gmail.com
@@ -64,7 +74,7 @@ export const ProfileSubmenu = () => {
           </li>
           <li className="flex items-center gap-4">
             <span className="text-[#9397ab]">
-              <MapPinIcon width={19} height={19} />
+              <RiMapPin2Line width={19} height={19} />
             </span>
             <p className="text-sm text-[#495057] dark:text-[#eff2f7]">California, USA</p>
           </li>
@@ -86,11 +96,16 @@ export const ProfileSubmenu = () => {
               alt=""
               className="h-[76px] w-[85px] rounded object-cover"
             />
-            <img
-              src="https://github.com/joaom00.png"
-              alt=""
-              className="h-[76px] w-[85px] rounded object-cover"
-            />
+            <div className="overflow-hidden rounded grid-stack">
+              <img
+                src="https://github.com/joaom00.png"
+                alt=""
+                className="h-[76px] w-[85px] rounded object-cover"
+              />
+              <div className="flex items-center justify-center bg-black/40 text-white">
+                <span className="text-sm">+ 15</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -100,13 +115,65 @@ export const ProfileSubmenu = () => {
             <p className="text-xs font-medium text-brand-primary">Show all</p>
           </div>
           <div className="flex flex-col gap-2">
-            <div className="h-[58px] rounded border border-dashed border-border"></div>
-            <div className="h-[58px] rounded border border-dashed border-border"></div>
-            <div className="h-[58px] rounded border border-dashed border-border"></div>
-            <div className="h-[58px] rounded border border-dashed border-border"></div>
+            {[1, 2, 3, 4].map((_, index) => (
+              <div
+                key={index}
+                className="flex h-[58px] items-center gap-2 rounded border border-dashed border-border p-3"
+              >
+                <Image src="/pdf-file.png" alt="" width={29} height={29} />
+                <div className="flex flex-1 flex-col">
+                  <span className="line-clamp-1 text-sm font-medium text-[#495057] dark:text-[#eff2f7]">
+                    design-phase-1-approved.pdf
+                  </span>
+                  <span className="text-[13px] text-[#9397ab]">12.5 MB</span>
+                </div>
+                <div className="flex items-center gap-3 text-[#9397ab]">
+                  <button>
+                    <BiSolidDownload className="h-3.5 w-3.5" />
+                  </button>
+                  <DropdownMenu>
+                    <BiDotsHorizontal className="h-3.5 w-3.5" />
+                  </DropdownMenu>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
+  )
+}
+
+const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <DropdownMenuPrimitive.Root>
+      <DropdownMenuPrimitive.Trigger>{children}</DropdownMenuPrimitive.Trigger>
+      <DropdownMenuPrimitive.Portal>
+        <DropdownMenuPrimitive.Content
+          align="end"
+          className="w-[160px] rounded border border-border bg-card py-2 text-sm"
+        >
+          <DropdownMenuPrimitive.Item className="flex h-[32.19px] items-center justify-between px-6 outline-none data-[highlighted]:bg-[#f8f9fa]  data-[highlighted]:text-[#1f2327] dark:data-[highlighted]:bg-[#282d31] dark:data-[highlighted]:text-[#ced4da]">
+            Share
+            <span className="text-[#9397ab]">
+              <BiShareAlt className="h-3.5 w-3.5" />
+            </span>
+          </DropdownMenuPrimitive.Item>
+          <DropdownMenuPrimitive.Item className="flex h-[32.19px] items-center justify-between px-6 outline-none data-[highlighted]:bg-[#f8f9fa]  data-[highlighted]:text-[#1f2327] dark:data-[highlighted]:bg-[#282d31] dark:data-[highlighted]:text-[#ced4da]">
+            Bookmark
+            <span className="text-[#9397ab]">
+              <BiBookmarks className="h-3.5 w-3.5" />
+            </span>
+          </DropdownMenuPrimitive.Item>
+          <DropdownMenuPrimitive.Separator className="my-2 h-[0px] w-full border-t border-border" />
+          <DropdownMenuPrimitive.Item className="flex h-[32.19px] items-center justify-between px-6 outline-none data-[highlighted]:bg-[#f8f9fa]  data-[highlighted]:text-[#1f2327] dark:data-[highlighted]:bg-[#282d31] dark:data-[highlighted]:text-[#ced4da]">
+            Delete
+            <span className="text-[#9397ab]">
+              <BiTrash className="h-3.5 w-3.5" />
+            </span>
+          </DropdownMenuPrimitive.Item>
+        </DropdownMenuPrimitive.Content>
+      </DropdownMenuPrimitive.Portal>
+    </DropdownMenuPrimitive.Root>
   )
 }

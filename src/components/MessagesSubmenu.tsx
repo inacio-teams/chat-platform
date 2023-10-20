@@ -1,15 +1,15 @@
-import { PlusIcon, SearchIcon } from 'lucide-react'
+import { BiPlus, BiSearch } from 'react-icons/bi'
 
 export const MessagesSubmenu = () => {
   return (
     <div className="flex h-full flex-col">
-      <div className="flex flex-col gap-6 px-6 pb-4 pt-6">
+      <div className="flex flex-col gap-4 px-6 pb-4 pt-6">
         <p className="text-xl font-medium">
           Messages <span className="text-[13px] text-brand-primary">(128)</span>
         </p>
         <div className="flex items-center gap-3 overflow-hidden rounded bg-[#f8f9fa] px-4 text-sm dark:bg-[#2a2f34]">
           <span className="text-[#212529] dark:text-[#eff2f7]">
-            <SearchIcon width={14} height={14} />
+            <BiSearch width={14} height={14} />
           </span>
           <input
             placeholder="Search here..."
@@ -21,14 +21,14 @@ export const MessagesSubmenu = () => {
         <p className="mb-4 mt-6 px-6 text-[11px] font-medium uppercase text-[#9397ab]">
           Favourites
         </p>
-        <ul className="flex flex-col">
-          <li className="flex gap-2 px-6 py-2.5">
+        <ul className="flex flex-col gap-1">
+          <li className="flex items-center gap-2 px-6 py-2.5">
             <img
               src="https://github.com/joaom00.png"
               alt=""
               className="h-[35px] w-[35px] rounded-full"
             />
-            <div className="flex flex-col justify-between leading-none">
+            <div className="flex flex-col justify-between gap-1 leading-none">
               <span className="text-sm font-medium text-[#495057] dark:text-[#eff2f7]">
                 Victoria Lane
               </span>
@@ -86,18 +86,18 @@ export const MessagesSubmenu = () => {
 
         <div className="mb-4 mt-12 flex items-center justify-between px-6">
           <p className="text-[11px] font-medium uppercase text-[#9397ab]">Direct Messages</p>
-          <button className="inline-flex h-[28px] w-[30px] items-center justify-center rounded-[0.2rem] bg-[#06d6a0]">
-            <PlusIcon width={12} height={12} />
+          <button className="inline-flex h-[28px] w-[30px] items-center justify-center rounded-[0.2rem] bg-[#06d6a0] text-white">
+            <BiPlus width={12} height={12} />
           </button>
         </div>
-        <ul className="flex flex-col">
-          <li className="flex gap-2 px-6 py-2.5">
+        <ul className="flex flex-col gap-1">
+          <li className="flex items-center gap-2 px-6 py-2.5">
             <img
               src="https://github.com/joaom00.png"
               alt=""
               className="h-[35px] w-[35px] rounded-full"
             />
-            <div className="flex flex-col justify-between leading-none">
+            <div className="flex flex-col justify-between gap-1 leading-none">
               <span className="text-sm font-medium text-[#495057] dark:text-[#eff2f7]">
                 Victoria Lane
               </span>

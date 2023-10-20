@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
+  darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
@@ -14,6 +15,9 @@ const config: Config = {
         },
         card: 'var(--bs-card-bg)',
         border: 'var(--bs-border-color)',
+        input: 'var(--bs-input-bg)',
+        'input-border': 'var(--bs-input-border)',
+        muted: '#9397ab',
         slate: {
           light: {
             1: '#fcfcfd',
@@ -45,10 +49,24 @@ const config: Config = {
           },
         },
       },
+      keyframes: {
+        slideDown: {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        slideUp: {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        slideUp: 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+      },
     },
   },
   plugins: [
-    plugin(function ({ addUtilities }) {
+    plugin(function({ addUtilities }) {
       addUtilities({
         '.grid-stack': {
           display: 'grid',
