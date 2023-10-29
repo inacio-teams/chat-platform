@@ -46,7 +46,10 @@ const LockScreenPage = () => {
 
       <p className="my-12 text-sm font-normal text-[#9397ab]">
         Not you ? return{' '}
-        <Link href={{ pathname: '/login' }} className="inline-flex text-brand-primary underline">
+        <Link
+          href={{ pathname: '/login' }}
+          className="inline-flex font-medium text-brand-primary underline transition-colors duration-300 hover:text-brand-primary/90"
+        >
           Login
         </Link>
       </p>

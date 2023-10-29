@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Copyright from '@/src/components/Copyright'
 import { BsFillPersonFill } from 'react-icons/bs'
 
@@ -19,9 +20,12 @@ const LogoutPage = () => {
         </p>
       </div>
 
-      <button className="mt-6 inline-flex h-[39px] w-full max-w-full items-center justify-center rounded bg-brand-primary/90 text-white transition-colors duration-300 hover:bg-brand-primary sm:max-w-[217px]">
+      <Link
+        href={{ pathname: '/login' }}
+        className="mt-6 inline-flex h-[39px] w-full max-w-full items-center justify-center rounded bg-brand-primary/90 text-white transition-colors duration-300 hover:bg-brand-primary sm:max-w-[217px]"
+      >
         Sign In
-      </button>
+      </Link>
 
       <Copyright className="pt-10" />
     </div>
