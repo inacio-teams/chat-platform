@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import * as Accordion from '@radix-ui/react-accordion'
+import * as Select from '@radix-ui/react-select'
+import * as SwitchPrimitive from '@radix-ui/react-switch'
+import clsx from 'clsx'
 import {
+  BiCheck,
   BiChevronDown,
   BiSolidCheckShield,
   BiSolidCircle,
@@ -14,6 +18,7 @@ import {
 import { RiArrowDownSLine } from 'react-icons/ri'
 
 import profileBanner from '../assets/4902908.jpg'
+import { ScrollAreaDemo } from './ScrollArea'
 
 export const SettingsSubmenu = () => {
   return (
@@ -36,7 +41,7 @@ export const SettingsSubmenu = () => {
         </div>
       </div>
 
-      <div className="-translate-y-10 border-b border-dashed border-border pb-6">
+      <div className="-translate-y-10 border-b border-border pb-6">
         <img
           src="https://github.com/joaom00.png"
           alt=""
@@ -53,33 +58,35 @@ export const SettingsSubmenu = () => {
         </div>
       </div>
 
-      <div className="-mt-10 flex-1 overflow-y-auto">
-        <Accordion.Root type="single" collapsible>
-          <Accordion.Item value="personal">
-            <AccordionTrigger Icon={BiSolidUser}>Personal Info</AccordionTrigger>
-            <AccordionContent>
-              <PersonalContent />
-            </AccordionContent>
-          </Accordion.Item>
-          <Accordion.Item value="privacy">
-            <AccordionTrigger Icon={BiSolidLock}>Privacy</AccordionTrigger>
-            <AccordionContent>
-              <PrivacyContent />
-            </AccordionContent>
-          </Accordion.Item>
-          <Accordion.Item value="security">
-            <AccordionTrigger Icon={BiSolidCheckShield}>Security</AccordionTrigger>
-            <AccordionContent>
-              <SecurityContent />
-            </AccordionContent>
-          </Accordion.Item>
-          <Accordion.Item value="help">
-            <AccordionTrigger Icon={BiSolidHelpCircle}>Help</AccordionTrigger>
-            <AccordionContent>
-              <HelpContent />
-            </AccordionContent>
-          </Accordion.Item>
-        </Accordion.Root>
+      <div className="-mt-10 flex-1 overflow-hidden">
+        <ScrollAreaDemo>
+          <Accordion.Root type="single" collapsible className="divide-y-[1px] divide-border">
+            <Accordion.Item value="personal">
+              <AccordionTrigger Icon={BiSolidUser}>Personal Info</AccordionTrigger>
+              <AccordionContent>
+                <PersonalContent />
+              </AccordionContent>
+            </Accordion.Item>
+            <Accordion.Item value="privacy">
+              <AccordionTrigger Icon={BiSolidLock}>Privacy</AccordionTrigger>
+              <AccordionContent>
+                <PrivacyContent />
+              </AccordionContent>
+            </Accordion.Item>
+            <Accordion.Item value="security">
+              <AccordionTrigger Icon={BiSolidCheckShield}>Security</AccordionTrigger>
+              <AccordionContent>
+                <SecurityContent />
+              </AccordionContent>
+            </Accordion.Item>
+            <Accordion.Item value="help">
+              <AccordionTrigger Icon={BiSolidHelpCircle}>Help</AccordionTrigger>
+              <AccordionContent>
+                <HelpContent />
+              </AccordionContent>
+            </Accordion.Item>
+          </Accordion.Root>
+        </ScrollAreaDemo>
       </div>
     </div>
   )
@@ -94,7 +101,7 @@ const AccordionTrigger = ({
 }) => {
   return (
     <Accordion.Header className="flex">
-      <Accordion.Trigger className="group flex h-[53px] flex-1 items-center justify-between border-b border-border px-5 leading-none text-[#495057] outline-none transition-colors hover:text-brand-primary dark:text-[#ced4da] dark:hover:text-brand-primary">
+      <Accordion.Trigger className="group flex h-[53px] flex-1 items-center justify-between border-b-border px-5 leading-none text-[#495057] outline-none transition-colors  hover:text-brand-primary data-[state=open]:border-b dark:text-[#ced4da] dark:hover:text-brand-primary">
         <div className="flex items-center gap-4 text-sm font-medium">
           <div className="inline-flex h-[29px] w-[29px] items-center justify-center rounded bg-[rgba(80,165,241,.2)] text-[#50a5f1]">
             <Icon className="h-3.5 w-3.5" />
@@ -193,32 +200,44 @@ const PersonalContent = () => {
 const PrivacyContent = () => {
   return (
     <div>
-      <p className="text-sm font-medium text-[#495057] dark:text-[#ced4da]">
+      <p className="mb-5 text-sm font-medium text-[#495057] dark:text-[#ced4da]">
         Who can see my personal info
       </p>
-      <div className="flex flex-col text-[13px]">
+      <div className="flex flex-col gap-5 text-[13px]">
         <div className="flex items-center justify-between">
           <span className="font-medium">Profile photo</span>
-          <span>Everyone</span>
+          <SelectDemo />
         </div>
         <div className="flex items-center justify-between">
           <span className="font-medium">Status</span>
-          <span>Everyone</span>
+          <SelectDemo />
         </div>
         <div className="flex items-center justify-between">
           <span className="font-medium">Groups</span>
-          <span>Everyone</span>
+          <SelectDemo />
         </div>
         <div className="flex items-center justify-between">
           <span className="font-medium">Last seen</span>
-          <span>Everyone</span>
+          <Switch />
         </div>
         <div className="flex items-center justify-between">
           <span className="font-medium">Read receipts</span>
-          <span>Everyone</span>
+          <Switch />
         </div>
       </div>
     </div>
+  )
+}
+
+const Switch = () => {
+  return (
+    <SwitchPrimitive.Root
+      className="relative h-[14px] w-[28px] rounded-full border border-border outline-none data-[state=checked]:bg-brand-primary"
+      id="airplane-mode"
+      style={{ WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)' }}
+    >
+      <SwitchPrimitive.Thumb className="block h-[8px] w-[8px] translate-x-0.5 rounded-full bg-white transition-transform duration-150 will-change-transform data-[state=checked]:translate-x-[16px]" />
+    </SwitchPrimitive.Root>
   )
 }
 
@@ -226,17 +245,63 @@ const SecurityContent = () => {
   return (
     <div className="flex items-center justify-between text-[13px]">
       <span className="font-medium">Show security notification</span>
-      <span>Everyone</span>
+      <Switch />
     </div>
   )
 }
 
 const HelpContent = () => {
   return (
-    <div className="flex flex-col text-[13px]">
+    <div className="flex flex-col gap-5 text-[13px]">
       <span className="font-medium">FAQs</span>
       <span className="font-medium">Contact</span>
       <span className="font-medium">Terms & Privacy policy</span>
     </div>
   )
 }
+
+const SelectDemo = () => (
+  <Select.Root defaultValue="everyone">
+    <Select.Trigger
+      className="data-[placeholder]:text-violet9 inline-flex h-[28px] min-w-[88px] items-center justify-between gap-[5px] rounded-[0.2rem] border border-border px-2 text-[12px] leading-none outline-none"
+      aria-label="Food"
+    >
+      <Select.Value placeholder="Select a fruit…" />
+      <Select.Icon className="text-violet11">
+        <BiChevronDown />
+      </Select.Icon>
+    </Select.Trigger>
+    <Select.Portal>
+      <Select.Content className="w-[--radix-select-content-width] overflow-hidden rounded-md border border-border bg-card">
+        <Select.Viewport className="p-[5px]">
+          <SelectItem value="everyone">Everyone</SelectItem>
+          <SelectItem value="selected">Selected</SelectItem>
+          <SelectItem value="nobody">Nobody</SelectItem>
+        </Select.Viewport>
+      </Select.Content>
+    </Select.Portal>
+  </Select.Root>
+)
+
+const SelectItem = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof Select.Item>
+>(({ children, className, ...props }, forwardedRef) => {
+  return (
+    <Select.Item
+      className={clsx(
+        'text-violet11 data-[disabled]:text-mauve8 data-[highlighted]:text-violet1 relative flex select-none items-center rounded-[0.2rem] p-1 pl-6 text-[12px] leading-none data-[disabled]:pointer-events-none data-[highlighted]:bg-blue-500 data-[highlighted]:outline-none',
+        className,
+      )}
+      {...props}
+      ref={forwardedRef}
+    >
+      <Select.ItemText>{children}</Select.ItemText>
+      <Select.ItemIndicator className="absolute left-0 inline-flex w-[24px] items-center justify-center">
+        <BiCheck />
+      </Select.ItemIndicator>
+    </Select.Item>
+  )
+})
+
+SelectItem.displayName = 'SelectItem'
